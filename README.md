@@ -6,8 +6,8 @@ Useful for onboarding, page transitions, custom clippers, painters etc.
 Inspired by [Cuberto - Animated Onboarding Screens](https://dribbble.com/shots/6654320-Animated-Onboarding-Screens)
 
 [![Pub package](https://img.shields.io/pub/v/concentric_transition.svg)](https://pub.dartlang.org/packages/concentric_transition)
-[![Build Status](https://travis-ci.org/tiamo/flutter_concentric_transition.svg?branch=master)](https://travis-ci.org/felangel/bloc)
-[![Star on GitHub](https://img.shields.io/github/stars/tiamo/flutter_concentric_transition.svg?style=flat&logo=github&colorB=deeppink&label=stars)](https://github.com/tiamo/flutter_concentric_transition)
+[![Build Status](https://travis-ci.org/tiamo/flutter-concentric-transition.svg?branch=master)](https://travis-ci.org/tiamo/flutter-concentric-transition)
+[![Star on GitHub](https://img.shields.io/github/stars/tiamo/flutter-concentric-transition.svg?style=flat&logo=github&colorB=deeppink&label=stars)](https://github.com/tiamo/flutter-concentric-transition)
 [![License: MIT](https://img.shields.io/badge/license-MIT-purple.svg)](https://opensource.org/licenses/MIT)
 
 ## Getting Started
@@ -62,7 +62,7 @@ Inspired by [Cuberto - Animated Onboarding Screens](https://dribbble.com/shots/6
  )
  ``` 
  
- * Check out the complete [Example](https://github.com/tiamo/concentric_swipe_flutter/tree/master/example)
+ * Check out the complete [Example](https://github.com/tiamo/flutter-concentric-transition/tree/master/example)
  
 ## Roadmap
     

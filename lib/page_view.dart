@@ -26,11 +26,11 @@ class ConcentricPageView extends StatefulWidget {
   const ConcentricPageView({
     Key key,
     @required this.itemBuilder,
+    @required this.colors,
     this.itemCount,
     this.pageController,
     this.pageSnapping = true,
     this.reverse = false,
-    this.colors = const [],
     this.notifier,
     this.scaleFactor = 0.3,
     this.opacityFactor = 1.0,
@@ -42,6 +42,7 @@ class ConcentricPageView extends StatefulWidget {
     this.duration = const Duration(milliseconds: 1500),
     this.curve = Curves.easeOutSine, // Cubic(0.7, 0.5, 0.5, 0.1),
   })  : assert(itemBuilder != null),
+        assert(colors.length >= 2),
         super(key: key);
 
   @override
@@ -157,28 +158,18 @@ class _ConcentricPageViewState extends State<ConcentricPageView> {
   }
 
   Widget _buildButton() {
-    return InkWell(
-      onTap: () {
+    return RawMaterialButton(
+      onPressed: () {
         _pageController.nextPage(
           duration: widget.duration,
           curve: widget.curve,
         );
       },
-      child: Container(
-        width: widget.radius * 2,
-        height: widget.radius * 2,
-        decoration: BoxDecoration(
-//          color: Colors.white.withOpacity(0.3),
-          shape: BoxShape.circle,
-        ),
-        //          iconData,
-        //          color: Colors.black,
-        //        ),
-//        child: Icon(
-//          Icons.arrow_forward_ios,
-//          color: Colors.white,
-//        ),
+      constraints: BoxConstraints(
+        minWidth: widget.radius * 2,
+        minHeight: widget.radius * 2,
       ),
+      shape: CircleBorder(),
     );
   }
 

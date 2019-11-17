@@ -48,7 +48,7 @@ class OnboardingExample extends StatelessWidget {
         body: ConcentricPageView(
           colors: _colors,
           //          itemCount: _pages.length,
-          physics: NeverScrollableScrollPhysics(),
+//          physics: NeverScrollableScrollPhysics(),
           itemBuilder: (index, value) {
             PageData page = _pages[index % _pages.length];
             // For example scale or transform some widget by [value] param

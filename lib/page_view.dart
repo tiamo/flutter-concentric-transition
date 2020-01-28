@@ -33,9 +33,9 @@ class ConcentricPageView extends StatefulWidget {
     this.reverse = false,
     this.notifier,
     this.scaleFactor = 0.3,
-    this.opacityFactor = 1.0,
-    this.radius = 30.0,
-    this.verticalPosition = 0.8,
+    this.opacityFactor = 0.0,
+    this.radius = 40.0,
+    this.verticalPosition = 0.75,
     this.direction = Axis.horizontal,
 //    this.physics = const NeverScrollableScrollPhysics(),
     this.physics,
@@ -116,6 +116,7 @@ class _ConcentricPageViewState extends State<ConcentricPageView> {
           scrollDirection: widget.direction,
           itemCount: widget.itemCount,
           pageSnapping: widget.pageSnapping,
+          onPageChanged: _onPageChanged,
           itemBuilder: (context, index) {
 //            var i = index % widget.children.length;
             return AnimatedBuilder(
@@ -130,17 +131,17 @@ class _ConcentricPageViewState extends State<ConcentricPageView> {
                   });
                   return Container();
                 }
-                double value = _pageController.page - index;
-                double scale =
+
+                final double value = _pageController.page - index;
+                final double scale =
                     (1 - (value.abs() * widget.scaleFactor)).clamp(0.0, 1.0);
-                double opacity = widget.opacityFactor >= 1.0
-                    ? widget.opacityFactor
-                    : (1 - (value.abs() * widget.opacityFactor))
-                        .clamp(0.0, 1.0);
+                final double opacity =
+                    (1 - (value.abs() * widget.opacityFactor)).clamp(0.0, 1.0);
+
                 return Transform.scale(
                   scale: scale,
-                  child: AnimatedOpacity(
-                    duration: Duration(milliseconds: 1000),
+                  child: Opacity(
+//                    duration: Duration(milliseconds: 1000),
                     opacity: opacity,
                     child: widget.itemBuilder(index, value),
                   ),
@@ -173,6 +174,10 @@ class _ConcentricPageViewState extends State<ConcentricPageView> {
     );
   }
 
+  void _onPageChanged(int page) {
+    // ...
+  }
+
   void _onScroll() {
     ScrollDirection direction = _pageController.position.userScrollDirection;
     if (direction == ScrollDirection.forward) {
@@ -186,9 +191,10 @@ class _ConcentricPageViewState extends State<ConcentricPageView> {
 //      _progress = 0;
     }
 
-    int total = widget.colors.length;
+    final int total = widget.colors.length;
     int prevIndex = _prevPage % total;
     int nextIndex = prevIndex + 1;
+
     if (prevIndex == total - 1) {
       nextIndex = 0;
     }

@@ -20,7 +20,7 @@ class Page1 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.amberAccent,
-      //      appBar: AppBar(title: Text("Page 1")),
+//      appBar: AppBar(title: Text("Page 1")),
       body: Center(
         child: RaisedButton(
           child: Text("Next"),
@@ -40,7 +40,7 @@ class Page2 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.deepPurpleAccent,
-      //      appBar: AppBar(title: Text("Page 2")),
+//      appBar: AppBar(title: Text("Page 2")),
       body: Center(
         child: RaisedButton(
           child: Text("Back"),

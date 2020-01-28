@@ -10,13 +10,18 @@ Inspired by [Cuberto - Animated Onboarding Screens](https://dribbble.com/shots/6
 [![Star on GitHub](https://img.shields.io/github/stars/tiamo/flutter-concentric-transition.svg?style=flat&logo=github&colorB=deeppink&label=stars)](https://github.com/tiamo/flutter-concentric-transition)
 [![License: MIT](https://img.shields.io/badge/license-MIT-purple.svg)](https://opensource.org/licenses/MIT)
 
-![example.gif](https://github.com/tiamo/flutter-concentric-transition/raw/master/example.gif)
+![1.gif](https://github.com/tiamo/flutter-concentric-transition/raw/master/screens/1.gif)
+![2.gif](https://github.com/tiamo/flutter-concentric-transition/raw/master/screens/2.gif)
+![3.gif](https://github.com/tiamo/flutter-concentric-transition/raw/master/screens/3.gif)
+![4.gif](https://github.com/tiamo/flutter-concentric-transition/raw/master/screens/4.gif)
+![5.gif](https://github.com/tiamo/flutter-concentric-transition/raw/master/screens/5.gif)
+![6.gif](https://github.com/tiamo/flutter-concentric-transition/raw/master/screens/6.gif)
 
 ## Getting Started
 * Add this to your pubspec.yaml
   ```
   dependencies:
-  concentric_transition: ^0.1.0
+  concentric_transition: ^0.1.1
   ```
 * Get the package from Pub:
   ```
@@ -26,6 +31,11 @@ Inspired by [Cuberto - Animated Onboarding Screens](https://dribbble.com/shots/6
   ```
   import 'package:concentric_transition/concentric_transition.dart';
   ```
+## Features
+
+* Concentric PageView
+* Concentric Clipper
+* Concentric PageRoute
 
 ## Usage
 
@@ -47,6 +57,13 @@ Inspired by [Cuberto - Animated Onboarding Screens](https://dribbble.com/shots/6
  );
  ``` 
  
+ * Using ConcentricPageRoute widget
+ ``` dart
+ Navigator.push(context, ConcentricPageRoute(builder: (ctx) {
+   return NextPage();
+ }));
+ ``` 
+ 
  * Using ConcentricClipper widget
  ``` dart
  import 'package:concentric_transition/concentric_transition.dart';
@@ -65,12 +82,7 @@ Inspired by [Cuberto - Animated Onboarding Screens](https://dribbble.com/shots/6
  ``` 
  
  * Check out the complete [Example](https://github.com/tiamo/flutter-concentric-transition/tree/master/example)
- 
-## Roadmap
-    
- * Page Route
- * Tests
- 
+
 ## Credits
 
  * [Cuberto - Animated Onboarding Screens](https://dribbble.com/shots/6654320-Animated-Onboarding-Screens)

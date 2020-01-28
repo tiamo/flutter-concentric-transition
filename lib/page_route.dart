@@ -10,7 +10,6 @@ class ConcentricPageRoute<T> extends PageRoute<T> {
   })  : assert(builder != null),
         assert(maintainState != null),
         assert(fullscreenDialog != null),
-        assert(opaque),
         super(settings: settings, fullscreenDialog: fullscreenDialog);
 
   /// Builds the primary contents of the route.
@@ -21,6 +20,9 @@ class ConcentricPageRoute<T> extends PageRoute<T> {
 
   @override
   Duration get transitionDuration => const Duration(milliseconds: 700);
+
+  @override
+  bool get opaque => false;
 
   @override
   Color get barrierColor => null;
@@ -106,7 +108,6 @@ class _FadeInPageTransition extends StatelessWidget {
 //      child: child,
 //    );
     return Container(
-      color: Colors.green,
       child: ClipPath(
         clipper: ConcentricClipper(progress: _opacityAnimation.value),
         child: child,

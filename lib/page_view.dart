@@ -8,6 +8,7 @@ import 'clipper.dart';
 class ConcentricPageView extends StatefulWidget {
   /// The [value] will help to provide some animations
   final Function(int index, double value) itemBuilder;
+  final Function(int page) onChange;
   final int itemCount;
   final PageController pageController;
   final bool pageSnapping;
@@ -27,6 +28,7 @@ class ConcentricPageView extends StatefulWidget {
     Key key,
     @required this.itemBuilder,
     @required this.colors,
+    this.onChange,
     this.itemCount,
     this.pageController,
     this.pageSnapping = true,
@@ -175,7 +177,7 @@ class _ConcentricPageViewState extends State<ConcentricPageView> {
   }
 
   void _onPageChanged(int page) {
-    // ...
+    widget.onChange(page);
   }
 
   void _onScroll() {

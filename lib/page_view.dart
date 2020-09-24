@@ -165,7 +165,7 @@ class _ConcentricPageViewState extends State<ConcentricPageView> {
   Widget _buildButton() {
     return RawMaterialButton(
       onPressed: () {
-        if (_pageController.page == widget.itemCount - 1) {
+        if (_pageController.page == widget.colors.length - 1) {
           if (widget.onFinish != null) {
             widget.onFinish();
           }

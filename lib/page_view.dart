@@ -183,7 +183,9 @@ class _ConcentricPageViewState extends State<ConcentricPageView> {
   }
 
   void _onPageChanged(int page) {
-    widget.onChange(page);
+    if (widget.onChange != null) {
+      widget.onChange(page);
+    }
   }
 
   void _onScroll() {

@@ -1,3 +1,8 @@
+## [0.1.2] - 2020.10.27
+
+* Support new flutter
+* Added onPageChange and onFinish ([#2](https://github.com/tiamo/flutter-concentric-transition/pull/2))
+
 ## [0.1.1] - 2020.01.28
 
 * Fixed ConcentricPageRoute

@@ -63,14 +63,14 @@ class OnboardingExample extends StatelessWidget {
               child: Theme(
                 data: ThemeData(
                   textTheme: TextTheme(
-                    title: TextStyle(
+                    headline6: TextStyle(
                       color: page.textColor,
                       fontWeight: FontWeight.w600,
                       fontFamily: 'Helvetica',
                       letterSpacing: 0.0,
                       fontSize: 17,
                     ),
-                    subtitle: TextStyle(
+                    subtitle2: TextStyle(
                       color: page.textColor,
                       fontWeight: FontWeight.w300,
                       fontSize: 18,
@@ -115,7 +115,7 @@ class PageCard extends StatelessWidget {
   Widget _buildText(BuildContext context) {
     return Text(
       page.title,
-      style: Theme.of(context).textTheme.title,
+      style: Theme.of(context).textTheme.headline6,
       textAlign: TextAlign.center,
     );
   }

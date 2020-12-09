@@ -128,8 +128,8 @@ class _ConcentricPageViewState extends State<ConcentricPageView> {
               builder: (BuildContext context, child) {
                 // on the first render, the pageController.page is null,
                 // this is a dirty hack
-                if (_pageController.position.minScrollExtent == null ||
-                    _pageController.position.maxScrollExtent == null) {
+                if (_pageController?.position?.minScrollExtent == null ||
+                    _pageController?.position?.maxScrollExtent == null) {
                   Future.delayed(Duration(microseconds: 1), () {
                     setState(() {});
                   });

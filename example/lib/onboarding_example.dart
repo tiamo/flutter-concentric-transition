@@ -46,15 +46,16 @@ class OnboardingExample extends StatelessWidget {
       home: Scaffold(
         body: ConcentricPageView(
           colors: colors,
-//          opacityFactor: 1.0,
-//          scaleFactor: 0.0,
+          // opacityFactor: 1.0,
+          // scaleFactor: 0.0,
           radius: 30,
           curve: Curves.ease,
           duration: Duration(seconds: 2),
-//          verticalPosition: 0.7,
-//          direction: Axis.vertical,
-//          itemCount: pages.length,
-//          physics: NeverScrollableScrollPhysics(),
+          // verticalPosition: 0.7,
+          // direction: Axis.vertical,
+          // itemCount: pages.length,
+          // physics: NeverScrollableScrollPhysics(),
+          // buttonChild: Center(child: Icon(Icons.arrow_forward_outlined)),
           itemBuilder: (index, value) {
             PageData page = pages[index % pages.length];
             // For example scale or transform some widget by [value] param
@@ -102,7 +103,6 @@ class PageCard extends StatelessWidget {
         horizontal: 30.0,
       ),
       child: Column(
-//        mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           _buildPicture(context),
           SizedBox(height: 30),
@@ -131,7 +131,7 @@ class PageCard extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(60.0)),
         color: page.bgColor
-//            .withBlue(page.bgColor.blue - 40)
+            // .withBlue(page.bgColor.blue - 40)
             .withGreen(page.bgColor.green + 20)
             .withRed(page.bgColor.red - 100)
             .withAlpha(90),

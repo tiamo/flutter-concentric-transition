@@ -21,7 +21,7 @@ Inspired by [Cuberto - Animated Onboarding Screens](https://dribbble.com/shots/6
 * Add this to your pubspec.yaml
   ```
   dependencies:
-  concentric_transition: ^1.0.0
+  concentric_transition: ^1.0.1
   ```
 * Get the package from Pub:
   ```

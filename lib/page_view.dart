@@ -8,27 +8,27 @@ import 'clipper.dart';
 class ConcentricPageView extends StatefulWidget {
   /// The [value] will help to provide some animations
   final Function(int index, double value) itemBuilder;
-  final Function(int page) onChange;
-  final Function onFinish;
-  final int itemCount;
-  final PageController pageController;
+  final Function(int page)? onChange;
+  final Function? onFinish;
+  final int? itemCount;
+  final PageController? pageController;
   final bool pageSnapping;
   final bool reverse;
   final List<Color> colors;
-  final ValueNotifier notifier;
+  final ValueNotifier? notifier;
   final double scaleFactor;
   final double opacityFactor;
   final double radius;
   final double verticalPosition;
   final Axis direction;
-  final ScrollPhysics physics;
+  final ScrollPhysics? physics;
   final Duration duration;
   final Curve curve;
 
   const ConcentricPageView({
-    Key key,
-    @required this.itemBuilder,
-    @required this.colors,
+    Key? key,
+    required this.itemBuilder,
+    required this.colors,
     this.onChange,
     this.onFinish,
     this.itemCount,
@@ -45,8 +45,7 @@ class ConcentricPageView extends StatefulWidget {
     this.physics,
     this.duration = const Duration(milliseconds: 1500),
     this.curve = Curves.easeOutSine, // Cubic(0.7, 0.5, 0.5, 0.1),
-  })  : assert(itemBuilder != null),
-        assert(colors.length >= 2),
+  })  : assert(colors.length >= 2),
         super(key: key);
 
   @override
@@ -54,12 +53,12 @@ class ConcentricPageView extends StatefulWidget {
 }
 
 class _ConcentricPageViewState extends State<ConcentricPageView> {
-  PageController _pageController;
+  PageController? _pageController;
 
   double _progress = 0;
   int _prevPage = 0;
-  Color _prevColor;
-  Color _nextColor;
+  Color? _prevColor;
+  Color? _nextColor;
 
   @override
   void initState() {
@@ -71,15 +70,15 @@ class _ConcentricPageViewState extends State<ConcentricPageView> {
             initialPage: 0,
           );
 
-    _pageController.addListener(_onScroll);
+    _pageController!.addListener(_onScroll);
     super.initState();
   }
 
   @override
   void dispose() {
-    _pageController.removeListener(_onScroll);
+    _pageController!.removeListener(_onScroll);
     if (widget.pageController == null) {
-      _pageController.dispose();
+      _pageController!.dispose();
     }
     super.dispose();
   }
@@ -90,7 +89,7 @@ class _ConcentricPageViewState extends State<ConcentricPageView> {
       alignment: Alignment.center,
       children: <Widget>[
         AnimatedBuilder(
-          animation: _pageController,
+          animation: _pageController!,
           builder: (ctx, _) {
             return Container(
               color: _prevColor, // Colors.white,
@@ -124,22 +123,20 @@ class _ConcentricPageViewState extends State<ConcentricPageView> {
           itemBuilder: (context, index) {
 //            var i = index % widget.children.length;
             return AnimatedBuilder(
-              animation: _pageController,
+              animation: _pageController!,
               builder: (BuildContext context, child) {
                 // on the first render, the pageController.page is null,
                 // this is a dirty hack
-                if (!_pageController.position.hasContentDimensions) {
+                if (!_pageController!.position.hasContentDimensions) {
                   Future.delayed(Duration(microseconds: 1), () {
                     setState(() {});
                   });
                   return Container();
                 }
 
-                final double value = _pageController.page - index;
-                final double scale =
-                    (1 - (value.abs() * widget.scaleFactor)).clamp(0.0, 1.0);
-                final double opacity =
-                    (1 - (value.abs() * widget.opacityFactor)).clamp(0.0, 1.0);
+                final double value = _pageController!.page! - index;
+                final double scale = (1 - (value.abs() * widget.scaleFactor)).clamp(0.0, 1.0);
+                final double opacity = (1 - (value.abs() * widget.opacityFactor)).clamp(0.0, 1.0);
 
                 return Transform.scale(
                   scale: scale,
@@ -164,12 +161,12 @@ class _ConcentricPageViewState extends State<ConcentricPageView> {
   Widget _buildButton() {
     return RawMaterialButton(
       onPressed: () {
-        if (_pageController.page == widget.colors.length - 1) {
+        if (_pageController!.page == widget.colors.length - 1) {
           if (widget.onFinish != null) {
-            widget.onFinish();
+            widget.onFinish!();
           }
         } else {
-          _pageController.nextPage(
+          _pageController!.nextPage(
             duration: widget.duration,
             curve: widget.curve,
           );
@@ -185,19 +182,19 @@ class _ConcentricPageViewState extends State<ConcentricPageView> {
 
   void _onPageChanged(int page) {
     if (widget.onChange != null) {
-      widget.onChange(page);
+      widget.onChange!(page);
     }
   }
 
   void _onScroll() {
-    ScrollDirection direction = _pageController.position.userScrollDirection;
+    ScrollDirection direction = _pageController!.position.userScrollDirection;
     if (direction == ScrollDirection.forward) {
-      _prevPage = (_pageController.page + 0.001).toInt();
-      _progress = _pageController.page - _prevPage;
+      _prevPage = (_pageController!.page! + 0.001).toInt();
+      _progress = _pageController!.page! - _prevPage;
 //    } else if (direction == ScrollDirection.reverse) {
     } else {
-      _prevPage = (_pageController.page - 0.001).toInt();
-      _progress = _pageController.page - _prevPage;
+      _prevPage = (_pageController!.page! - 0.001).toInt();
+      _progress = _pageController!.page! - _prevPage;
 //    } else {
 //      _progress = 0;
     }
@@ -213,6 +210,6 @@ class _ConcentricPageViewState extends State<ConcentricPageView> {
     _prevColor = widget.colors[prevIndex];
     _nextColor = widget.colors[nextIndex];
 
-    widget.notifier?.value = _pageController.page - _prevPage;
+    widget.notifier?.value = _pageController!.page! - _prevPage;
   }
 }

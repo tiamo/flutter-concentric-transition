@@ -3,8 +3,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class PageData {
-  final String title;
-  final IconData icon;
+  final String? title;
+  final IconData? icon;
   final Color bgColor;
   final Color textColor;
 
@@ -91,8 +91,8 @@ class PageCard extends StatelessWidget {
   final PageData page;
 
   const PageCard({
-    Key key,
-    @required this.page,
+    Key? key,
+    required this.page,
   }) : super(key: key);
 
   @override
@@ -114,7 +114,7 @@ class PageCard extends StatelessWidget {
 
   Widget _buildText(BuildContext context) {
     return Text(
-      page.title,
+      page.title!,
       style: Theme.of(context).textTheme.headline6,
       textAlign: TextAlign.center,
     );

@@ -22,7 +22,7 @@ class Page1 extends StatelessWidget {
       backgroundColor: Colors.amberAccent,
 //      appBar: AppBar(title: Text("Page 1")),
       body: Center(
-        child: RaisedButton(
+        child: MaterialButton(
           child: Text("Next"),
           onPressed: () {
             Navigator.push(context, ConcentricPageRoute(builder: (ctx) {
@@ -42,7 +42,7 @@ class Page2 extends StatelessWidget {
       backgroundColor: Colors.deepPurpleAccent,
 //      appBar: AppBar(title: Text("Page 2")),
       body: Center(
-        child: RaisedButton(
+        child: MaterialButton(
           child: Text("Back"),
           onPressed: () => Navigator.pop(context),
         ),

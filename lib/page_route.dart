@@ -47,7 +47,8 @@ class ConcentricPageRoute<T> extends PageRoute<T> {
     final Widget? result = builder(context);
     assert(() {
       if (result == null) {
-        throw FlutterError('The builder for route "${settings.name}" returned null.\n'
+        throw FlutterError(
+            'The builder for route "${settings.name}" returned null.\n'
             'Route builders must never return null.');
       }
       return true;
@@ -77,7 +78,8 @@ class ConcentricPageRoute<T> extends PageRoute<T> {
 class _FadeInPageTransition extends StatelessWidget {
   _FadeInPageTransition({
     Key? key,
-    required Animation<double> routeAnimation, // The route's linear 0.0 - 1.0 animation.
+    required Animation<double>
+        routeAnimation, // The route's linear 0.0 - 1.0 animation.
     required this.child,
   })   : _opacityAnimation = routeAnimation.drive(_easeInTween),
         super(key: key);
@@ -89,7 +91,8 @@ class _FadeInPageTransition extends StatelessWidget {
 //  );
 //  static final Animatable<double> _fastOutSlowInTween =
 //      CurveTween(curve: Curves.fastOutSlowIn);
-  static final Animatable<double> _easeInTween = CurveTween(curve: Curves.easeIn);
+  static final Animatable<double> _easeInTween =
+      CurveTween(curve: Curves.easeIn);
 
   final Animation<double> _opacityAnimation;
   final Widget child;

@@ -135,8 +135,10 @@ class _ConcentricPageViewState extends State<ConcentricPageView> {
                 }
 
                 final double value = _pageController!.page! - index;
-                final double scale = (1 - (value.abs() * widget.scaleFactor)).clamp(0.0, 1.0);
-                final double opacity = (1 - (value.abs() * widget.opacityFactor)).clamp(0.0, 1.0);
+                final double scale =
+                    (1 - (value.abs() * widget.scaleFactor)).clamp(0.0, 1.0);
+                final double opacity =
+                    (1 - (value.abs() * widget.opacityFactor)).clamp(0.0, 1.0);
 
                 return Transform.scale(
                   scale: scale,

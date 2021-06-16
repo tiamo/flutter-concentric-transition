@@ -51,6 +51,11 @@ class OnboardingExample extends StatelessWidget {
           radius: 30,
           curve: Curves.ease,
           duration: Duration(seconds: 2),
+          iconChildren: [
+            Icon(Icons.home),
+            Icon(Icons.edit),
+            Icon(Icons.person),
+          ],
 //          verticalPosition: 0.7,
 //          direction: Axis.vertical,
 //          itemCount: pages.length,

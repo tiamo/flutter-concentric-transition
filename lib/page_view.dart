@@ -24,6 +24,7 @@ class ConcentricPageView extends StatefulWidget {
   final ScrollPhysics? physics;
   final Duration duration;
   final Curve curve;
+  final List<Icon>? iconChildren;
 
   const ConcentricPageView({
     Key? key,
@@ -45,6 +46,7 @@ class ConcentricPageView extends StatefulWidget {
     this.physics,
     this.duration = const Duration(milliseconds: 1500),
     this.curve = Curves.easeOutSine, // Cubic(0.7, 0.5, 0.5, 0.1),
+    this.iconChildren,
   })  : assert(colors.length >= 2),
         super(key: key);
 
@@ -57,6 +59,7 @@ class _ConcentricPageViewState extends State<ConcentricPageView> {
 
   double _progress = 0;
   int _prevPage = 0;
+  int _currentPage = 0;
   Color? _prevColor;
   Color? _nextColor;
 
@@ -85,6 +88,9 @@ class _ConcentricPageViewState extends State<ConcentricPageView> {
 
   @override
   Widget build(BuildContext context) {
+    if (widget.iconChildren != null) {
+      assert(widget.colors.length == widget.iconChildren!.length);
+    }
     return Stack(
       alignment: Alignment.center,
       children: <Widget>[
@@ -162,6 +168,21 @@ class _ConcentricPageViewState extends State<ConcentricPageView> {
 
   Widget _buildButton() {
     return RawMaterialButton(
+      child: widget.iconChildren != null && widget.iconChildren!.isNotEmpty
+          ? TweenAnimationBuilder(
+              key: Key(_currentPage.toString()),
+              tween: Tween<double>(begin: 0.0, end: 1.0),
+              duration: Duration(
+                  milliseconds: (widget.duration.inMilliseconds / 2).round()),
+              builder: (BuildContext context, double value, Widget? child) {
+                return Opacity(
+                  opacity: value,
+                  child: child,
+                );
+              },
+              child: widget.iconChildren![_currentPage],
+            )
+          : Container(),
       onPressed: () {
         if (_pageController!.page == widget.colors.length - 1) {
           if (widget.onFinish != null) {
@@ -208,6 +229,11 @@ class _ConcentricPageViewState extends State<ConcentricPageView> {
     if (prevIndex == total - 1) {
       nextIndex = 0;
     }
+
+    setState(() {
+      _currentPage =
+          direction == ScrollDirection.forward ? prevIndex : nextIndex;
+    });
 
     _prevColor = widget.colors[prevIndex];
     _nextColor = widget.colors[nextIndex];

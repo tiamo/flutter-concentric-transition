@@ -5,7 +5,7 @@ Useful for onboarding, page transitions, custom clippers, painters etc.
 
 Inspired by [Cuberto - Animated Onboarding Screens](https://dribbble.com/shots/6654320-Animated-Onboarding-Screens)
 
-[![Build Status](https://travis-ci.org/tiamo/flutter-concentric-transition.svg?branch=master)](https://travis-ci.org/tiamo/flutter-concentric-transition)
+[![Build Status](https://github.com/tiamo/flutter-concentric-transition/actions/workflows/main.yml/badge.svg)](https://github.com/tiamo/flutter-concentric-transition)
 [![Pub package](https://img.shields.io/pub/v/concentric_transition.svg)](https://pub.dartlang.org/packages/concentric_transition)
 [![Star on GitHub](https://img.shields.io/github/stars/tiamo/flutter-concentric-transition.svg?style=flat&logo=github&colorB=deeppink&label=stars)](https://github.com/tiamo/flutter-concentric-transition)
 [![License: MIT](https://img.shields.io/badge/license-MIT-purple.svg)](https://opensource.org/licenses/MIT)
@@ -21,7 +21,7 @@ Inspired by [Cuberto - Animated Onboarding Screens](https://dribbble.com/shots/6
 * Add this to your pubspec.yaml
   ```
   dependencies:
-  concentric_transition: ^0.1.1
+  concentric_transition: ^1.0.1
   ```
 * Get the package from Pub:
   ```

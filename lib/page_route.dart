@@ -3,14 +3,11 @@ import 'package:flutter/material.dart';
 
 class ConcentricPageRoute<T> extends PageRoute<T> {
   ConcentricPageRoute({
-    @required this.builder,
-    RouteSettings settings,
+    required this.builder,
+    RouteSettings? settings,
     this.maintainState = true,
     bool fullscreenDialog = false,
-  })  : assert(builder != null),
-        assert(maintainState != null),
-        assert(fullscreenDialog != null),
-        super(settings: settings, fullscreenDialog: fullscreenDialog);
+  }) : super(settings: settings, fullscreenDialog: fullscreenDialog);
 
   /// Builds the primary contents of the route.
   final WidgetBuilder builder;
@@ -25,10 +22,10 @@ class ConcentricPageRoute<T> extends PageRoute<T> {
   bool get opaque => false;
 
   @override
-  Color get barrierColor => null;
+  Color? get barrierColor => null;
 
   @override
-  String get barrierLabel => null;
+  String? get barrierLabel => null;
 
   @override
   bool canTransitionFrom(TransitionRoute<dynamic> previousRoute) {
@@ -47,7 +44,7 @@ class ConcentricPageRoute<T> extends PageRoute<T> {
     Animation<double> animation,
     Animation<double> secondaryAnimation,
   ) {
-    final Widget result = builder(context);
+    final Widget? result = builder(context);
     assert(() {
       if (result == null) {
         throw FlutterError(
@@ -80,11 +77,10 @@ class ConcentricPageRoute<T> extends PageRoute<T> {
 
 class _FadeInPageTransition extends StatelessWidget {
   _FadeInPageTransition({
-    Key key,
-    @required
-        Animation<double>
-            routeAnimation, // The route's linear 0.0 - 1.0 animation.
-    @required this.child,
+    Key? key,
+    required Animation<double>
+        routeAnimation, // The route's linear 0.0 - 1.0 animation.
+    required this.child,
   })  : _opacityAnimation = routeAnimation.drive(_easeInTween),
         super(key: key);
 

@@ -1,3 +1,13 @@
+## [1.0.1] - 2021.05.01
+
+* Cleanup
+* Added github actions
+
+## [1.0.0] - 2021.05.01
+
+* Null-safety support
+* Fixed null check operator issue ([#6](https://github.com/tiamo/flutter-concentric-transition/pull/6))
+
 ## [0.1.2] - 2020.10.27
 
 * Support new flutter

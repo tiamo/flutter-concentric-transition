@@ -24,7 +24,7 @@ class ConcentricPageView extends StatefulWidget {
   final ScrollPhysics? physics;
   final Duration duration;
   final Curve curve;
-  final Widget buttonChild;
+  final Widget? buttonChild;
 
   const ConcentricPageView({
     Key? key,

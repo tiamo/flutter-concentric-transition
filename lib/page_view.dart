@@ -172,7 +172,20 @@ class _ConcentricPageViewState extends State<ConcentricPageView> {
             return Positioned(
                 top: MediaQuery.of(context).size.height *
                     widget.verticalPosition,
-                child: _buildButton());
+                child: TweenAnimationBuilder(
+                  key: Key('${_pageController!.page?.floor()}'),
+                  tween: Tween<double>(begin: 0.0, end: 1.0),
+                  duration: Duration(
+                      milliseconds:
+                          (widget.duration.inMilliseconds / 2).round()),
+                  builder: (BuildContext context, double value, Widget? child) {
+                    return Opacity(
+                      opacity: value,
+                      child: child,
+                    );
+                  },
+                  child: _buildButton(),
+                ));
           },
         ),
       ],
@@ -181,6 +194,7 @@ class _ConcentricPageViewState extends State<ConcentricPageView> {
 
   Widget _buildButton() {
     var isFinal = _pageController!.page == widget.colors.length - 1;
+
     return RawMaterialButton(
       onPressed: () {
         if (isFinal) {

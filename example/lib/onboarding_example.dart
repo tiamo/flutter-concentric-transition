@@ -81,7 +81,11 @@ class _Page extends StatelessWidget {
     return Column(
       children: [
         space(10),
-        _Image(page: page),
+        _Image(
+          page: page,
+          size: 190,
+          iconSize: 170,
+        ),
         space(8),
         _Text(
           page: page,
@@ -125,8 +129,8 @@ class _Image extends StatelessWidget {
   const _Image({
     Key? key,
     required this.page,
-    this.size = 190,
-    this.iconSize = 170,
+    required this.size,
+    required this.iconSize,
   }) : super(key: key);
 
   final PageData page;

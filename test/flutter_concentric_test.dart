@@ -9,12 +9,11 @@ void main() {
       MaterialApp(
         home: ConcentricPageView(
           colors: const [Colors.white, Colors.amberAccent],
-          itemBuilder: (index) => Text('Page $index'),
-          itemCount: 1,
+          itemBuilder: (index) => Center(child: Text('Page $index')),
         ),
       ),
     );
-    await tester.pump(const Duration(microseconds: 100));
+    await tester.pump(const Duration(microseconds: 200));
     expect(find.text('Page 0', skipOffstage: false), findsOneWidget);
   });
 

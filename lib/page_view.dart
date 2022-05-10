@@ -23,6 +23,7 @@ class ConcentricPageView extends StatefulWidget {
   final ScrollPhysics? physics;
   final Duration duration;
   final Curve curve;
+  final Key? pageViewKey;
 
   /// Useful for adding a next icon to the page view button
   final WidgetBuilder? nextButtonBuilder;
@@ -31,6 +32,7 @@ class ConcentricPageView extends StatefulWidget {
     Key? key,
     required this.itemBuilder,
     required this.colors,
+    this.pageViewKey,
     this.onChange,
     this.onFinish,
     this.itemCount,
@@ -84,7 +86,7 @@ class _ConcentricPageViewState extends State<ConcentricPageView> {
       alignment: Alignment.center,
       children: [
         _buildClipper(),
-        _buildPage(),
+        _buildPageView(),
         Positioned(
           top: MediaQuery.of(context).size.height * widget.verticalPosition,
           child: _Button(
@@ -96,8 +98,9 @@ class _ConcentricPageViewState extends State<ConcentricPageView> {
     );
   }
 
-  Widget _buildPage() {
+  Widget _buildPageView() {
     return PageView.builder(
+      key: widget.pageViewKey,
       scrollBehavior: ScrollConfiguration.of(context).copyWith(
         scrollbars: false,
         overscroll: false,
@@ -119,12 +122,12 @@ class _ConcentricPageViewState extends State<ConcentricPageView> {
         }
       },
       itemBuilder: (context, index) {
+        final child = widget.itemBuilder(index);
         if (!_pageController.position.hasContentDimensions) {
-          return const SizedBox();
+          return child;
         }
         return AnimatedBuilder(
           animation: _pageController,
-          child: widget.itemBuilder(index),
           builder: (context, child) {
             final progress = _pageController.page! - index;
             if (widget.opacityFactor != 0) {
@@ -143,6 +146,7 @@ class _ConcentricPageViewState extends State<ConcentricPageView> {
             }
             return child!;
           },
+          child: child,
         );
       },
     );

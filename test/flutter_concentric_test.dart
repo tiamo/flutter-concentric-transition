@@ -8,13 +8,13 @@ void main() {
     await tester.pumpWidget(
       MaterialApp(
         home: ConcentricPageView(
-          colors: [Colors.white, Colors.amberAccent],
-          itemBuilder: (index, _) => Text('Page $index'),
+          colors: const [Colors.white, Colors.amberAccent],
+          itemBuilder: (index) => Text('Page $index'),
           itemCount: 1,
         ),
       ),
     );
-    await tester.pump(Duration(microseconds: 100));
+    await tester.pump(const Duration(microseconds: 100));
     expect(find.text('Page 0', skipOffstage: false), findsOneWidget);
   });
 
@@ -28,23 +28,24 @@ void main() {
       MaterialApp(
         home: ConcentricPageView(
           pageController: controller,
-          colors: [Colors.white, Colors.amberAccent],
-          itemBuilder: (index, _) => Text('Page $index'),
+          colors: const [Colors.white, Colors.amberAccent],
+          itemBuilder: (index) => Text('Page $index'),
         ),
       ),
     );
-    await tester.pump(Duration(microseconds: 100));
+    await tester.pump(const Duration(microseconds: 100));
     expect(find.text('Page 0'), findsOneWidget);
 
     bool nextPageCompleted = false;
     controller
-        .nextPage(duration: Duration(milliseconds: 150), curve: Curves.ease)
+        .nextPage(
+            duration: const Duration(milliseconds: 150), curve: Curves.ease)
         .then((_) => nextPageCompleted = true);
 
     expect(nextPageCompleted, false);
-    await tester.pump(Duration(milliseconds: 200));
+    await tester.pump(const Duration(milliseconds: 200));
     expect(nextPageCompleted, false);
-    await tester.pump(Duration(milliseconds: 200));
+    await tester.pump(const Duration(milliseconds: 200));
     expect(nextPageCompleted, true);
 
     expect(find.text('Page 1'), findsOneWidget);

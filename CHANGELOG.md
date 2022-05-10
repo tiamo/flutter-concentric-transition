@@ -1,6 +1,9 @@
-## [1.0.2] - 2022.03.26
+## [1.0.2] - 2022.05.09
 
-* Added nextButtonContent and finishButtonContent options to PageView
+* Added nextButtonBuilder option to ConcentricPageView
+* Global code refactored
+* Added `flutter_lints`
+* Cleanup
 
 ## [1.0.1] - 2021.05.01
 

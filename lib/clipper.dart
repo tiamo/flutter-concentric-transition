@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 
 class ConcentricClipper extends CustomClipper<Path> {
   final double radius;
@@ -10,7 +10,7 @@ class ConcentricClipper extends CustomClipper<Path> {
   final double growFactor;
   final bool reverse;
 
-  ConcentricClipper({
+  const ConcentricClipper({
     this.progress = 0.0,
     this.verticalPosition = 0.85,
     this.radius = 30.0,
@@ -49,6 +49,7 @@ class ConcentricClipper extends CustomClipper<Path> {
     if (reverse) {
       x *= -1;
     }
+
     return Rect.fromCircle(center: Offset(x, y), radius: r);
   }
 
@@ -67,6 +68,7 @@ class ConcentricClipper extends CustomClipper<Path> {
     if (reverse) {
       x *= -1;
     }
+
     return Rect.fromCircle(center: Offset(x, y), radius: r);
   }
 }

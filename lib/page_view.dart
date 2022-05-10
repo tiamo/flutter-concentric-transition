@@ -25,6 +25,12 @@ class ConcentricPageView extends StatefulWidget {
   final Duration duration;
   final Curve curve;
 
+  /// Useful for adding a next icon to the page view button
+  final Widget? nextButtonContent;
+
+  /// Useful for adding a complete icon to the page view button on final page
+  final Widget? finishButtonContent;
+
   const ConcentricPageView({
     Key? key,
     required this.itemBuilder,
@@ -44,7 +50,10 @@ class ConcentricPageView extends StatefulWidget {
 //    this.physics = const NeverScrollableScrollPhysics(),
     this.physics,
     this.duration = const Duration(milliseconds: 1500),
-    this.curve = Curves.easeOutSine, // Cubic(0.7, 0.5, 0.5, 0.1),
+    this.curve = Curves.easeOutSine,
+    this.finishButtonContent,
+    // Cubic(0.7, 0.5, 0.5, 0.1)
+    this.nextButtonContent,
   })  : assert(colors.length >= 2),
         super(key: key);
 
@@ -152,18 +161,43 @@ class _ConcentricPageViewState extends State<ConcentricPageView> {
             );
           },
         ),
-        Positioned(
-          top: MediaQuery.of(context).size.height * widget.verticalPosition,
-          child: _buildButton(),
+        StatefulBuilder(
+          builder: (BuildContext context, StateSetter setState) {
+            _pageController!.addListener(() {
+              if (_pageController!.page is int) {
+                setState(() {});
+              }
+            });
+
+            return Positioned(
+                top: MediaQuery.of(context).size.height *
+                    widget.verticalPosition,
+                child: TweenAnimationBuilder(
+                  key: Key('${_pageController!.page?.floor()}'),
+                  tween: Tween<double>(begin: 0.0, end: 1.0),
+                  duration: Duration(
+                      milliseconds:
+                          (widget.duration.inMilliseconds / 2).round()),
+                  builder: (BuildContext context, double value, Widget? child) {
+                    return Opacity(
+                      opacity: value,
+                      child: child,
+                    );
+                  },
+                  child: _buildButton(),
+                ));
+          },
         ),
       ],
     );
   }
 
   Widget _buildButton() {
+    var isFinal = _pageController!.page == widget.colors.length - 1;
+
     return RawMaterialButton(
       onPressed: () {
-        if (_pageController!.page == widget.colors.length - 1) {
+        if (isFinal) {
           if (widget.onFinish != null) {
             widget.onFinish!();
           }
@@ -179,6 +213,7 @@ class _ConcentricPageViewState extends State<ConcentricPageView> {
         minHeight: widget.radius * 2,
       ),
       shape: CircleBorder(),
+      child: isFinal ? widget.finishButtonContent : widget.nextButtonContent,
     );
   }
 

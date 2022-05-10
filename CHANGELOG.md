@@ -1,3 +1,7 @@
+## [1.0.2] - 2022.03.26
+
+* Added nextButtonContent and finishButtonContent options to PageView
+
 ## [1.0.1] - 2021.05.01
 
 * Cleanup

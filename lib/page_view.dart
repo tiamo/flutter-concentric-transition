@@ -1,11 +1,11 @@
 import 'package:flutter/gestures.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 
 import 'clipper.dart';
 
 class ConcentricPageView extends StatefulWidget {
-  /// The [value] will help to provide some animations
   final Function(int index) itemBuilder;
   final Function(int page)? onChange;
   final Function? onFinish;
@@ -47,7 +47,7 @@ class ConcentricPageView extends StatefulWidget {
     this.direction = Axis.horizontal,
     this.physics = const ClampingScrollPhysics(),
     this.duration = const Duration(milliseconds: 1500),
-    this.curve = Curves.easeOutSine, // const Cubic(0.7, 0.5, 0.5, 0.1),
+    this.curve = Curves.easeInOutSine, // const Cubic(0.7, 0.5, 0.5, 0.1),
     this.nextButtonBuilder,
   })  : assert(colors.length >= 2),
         super(key: key);
@@ -177,12 +177,14 @@ class _ConcentricPageViewState extends State<ConcentricPageView> {
 
   void _onScroll() {
     final direction = _pageController.position.userScrollDirection;
+    double page = _pageController.page ?? 0;
+
     if (direction == ScrollDirection.forward) {
-      _prevPage = (_pageController.page! + 0.0001).toInt();
-      _progress = _pageController.page! - _prevPage;
+      _prevPage = page.toInt();
+      _progress = page - _prevPage;
     } else {
-      _prevPage = (_pageController.page! - 0.0001).toInt();
-      _progress = _pageController.page! - _prevPage;
+      _prevPage = page.toInt();
+      _progress = page - _prevPage;
     }
 
     final total = widget.colors.length;
@@ -196,7 +198,7 @@ class _ConcentricPageViewState extends State<ConcentricPageView> {
     _prevColor = widget.colors[prevIndex];
     _nextColor = widget.colors[nextIndex];
 
-    widget.notifier?.value = _pageController.page! - _prevPage;
+    widget.notifier?.value = page - _prevPage;
   }
 }
 
@@ -245,10 +247,15 @@ class _Button extends StatelessWidget {
         final currentPage = pageController.page?.floor() ?? 0;
         final progress = (pageController.page ?? 0) - currentPage;
         return AnimatedOpacity(
-          opacity: progress > 0.02 ? 0.0 : 1.0,
+          opacity: progress > 0.01 ? 0.0 : 1.0,
           curve: Curves.ease,
           duration: const Duration(milliseconds: 150),
-          child: child!,
+          child: IconTheme(
+            data: IconThemeData(
+              color: widget.colors[currentPage % widget.colors.length],
+            ),
+            child: child!,
+          ),
         );
       },
       child: child,

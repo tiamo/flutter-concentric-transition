@@ -1,3 +1,8 @@
+## [1.0.3] - 2022.06.08
+
+* Fixed Content and Colors not displaying properly issue ([#14](https://github.com/tiamo/flutter-concentric-transition/issues/14))
+* Code refactory
+
 ## [1.0.2] - 2022.05.09
 
 * Added nextButtonBuilder option to ConcentricPageView

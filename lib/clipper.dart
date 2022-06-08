@@ -42,8 +42,8 @@ class ConcentricClipper extends CustomClipper<Path> {
     double _progress = progress * growFactor;
     double _limit = limit * growFactor;
     double r = radius + pow(2, _progress);
-    double delta = (1 - _progress / _limit) * radius;
-    double x = (size.width / 2) + r - delta;
+    double delta = (1 - (_progress / _limit)) * radius;
+    double x = (size.width / 2) + r - delta - 2.0;
     double y = (size.height * verticalPosition) + radius;
 
     if (reverse) {
@@ -57,7 +57,7 @@ class ConcentricClipper extends CustomClipper<Path> {
     double _progress = (progress - limit) * growFactor;
     double _limit = limit * growFactor;
     double r = radius + pow(2, _limit - _progress);
-    double delta = _progress / _limit * radius;
+    double delta = (_progress / _limit) * radius;
     double x = size.width / 2 - r + delta;
     double y = (size.height * verticalPosition) + radius;
 

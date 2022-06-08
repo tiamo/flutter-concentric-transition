@@ -3,6 +3,12 @@ import 'package:flutter/material.dart';
 
 final pages = [
   const PageData(
+    icon: Icons.bubble_chart,
+    title: "Local news\nstories",
+    bgColor: Color(0xFF0043D0),
+    textColor: Colors.white,
+  ),
+  const PageData(
     icon: Icons.format_size,
     title: "Choose your\ninterests",
     textColor: Colors.white,
@@ -12,12 +18,6 @@ final pages = [
     icon: Icons.hdr_weak,
     title: "Drag and\ndrop to move",
     bgColor: Color(0xFFFFFFFF),
-  ),
-  const PageData(
-    icon: Icons.bubble_chart,
-    title: "Local news\nstories",
-    bgColor: Color(0xFF0043D0),
-    textColor: Colors.white,
   ),
 ];
 
@@ -30,14 +30,17 @@ class OnboardingExample extends StatelessWidget {
     return Scaffold(
       body: ConcentricPageView(
         colors: pages.map((p) => p.bgColor).toList(),
-        radius: screenWidth * 0.12,
-        curve: Curves.ease,
-        nextButtonBuilder: (context) => Icon(
-          Icons.navigate_next,
-          size: screenWidth * 0.1,
+        radius: screenWidth * 0.1,
+        // curve: Curves.ease,
+        nextButtonBuilder: (context) => Padding(
+          padding: const EdgeInsets.only(left: 3), // visual center
+          child: Icon(
+            Icons.navigate_next,
+            size: screenWidth * 0.08,
+          ),
         ),
         // itemCount: pages.length,
-        duration: const Duration(milliseconds: 1500),
+        // duration: const Duration(milliseconds: 1500),
         // opacityFactor: 2.0,
         // scaleFactor: 0.2,
         // verticalPosition: 0.7,

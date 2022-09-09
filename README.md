@@ -1,4 +1,4 @@
-# Concentric Transition
+# ➰ Concentric Transition
 
 A Flutter plugin to create views using Concentric Transition Clipper. 
 Useful for onboarding, page transitions, custom clippers, painters etc.
@@ -33,9 +33,9 @@ Inspired by [Cuberto - Animated Onboarding Screens](https://dribbble.com/shots/6
   ```
 ## Features
 
-* Concentric PageView
-* Concentric Clipper
-* Concentric PageRoute
+* 📺 Concentric PageView
+* 🕳️ Concentric Clipper
+* 📙 Concentric PageRoute
 
 ## Usage
 
